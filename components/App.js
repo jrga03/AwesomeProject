@@ -33,6 +33,8 @@ export default class App extends Component {
         <View style={styles.container}>
         <TextInput 
           style={styles.textBox}
+          underlineColorAndroid='transparent'
+          placeholder='This is a text box.'
           // onChangeText={}
           // value={}
         />
@@ -114,14 +116,13 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'stretch',
   },
   textBox: {
-    borderWidth: 1,
-    borderColor: 'gray',
-    borderRadius: 5,
-    // height: 40,
-    marginTop: 5
+    // borderWidth: 1,
+    // borderColor: 'gray',
+    // borderRadius: 5,
+    padding: 15,
   },
   modalContainer: {
     flex: 1,
