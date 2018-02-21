@@ -9,7 +9,8 @@ import {
   Button,
   StyleSheet,
   FlatList,
-  Modal
+  Modal,
+  TextInput
 } from 'react-native';
 
 export default class App extends Component {
@@ -30,6 +31,11 @@ export default class App extends Component {
     return (
       <ScrollView style={styles.scroll}>
         <View style={styles.container}>
+        <TextInput 
+          style={styles.textBox}
+          // onChangeText={}
+          // value={}
+        />
           <Modal
               visible={this.state.modalVisible}
               animationType={'slide'}
@@ -51,7 +57,7 @@ export default class App extends Component {
               source={{uri: 'http://www.reactnativeexpress.com/logo.png'}}
             />
           </View>
-          <Button onPress={() => this.openModal()} title='Press Me, Yo' />
+          <Button onPress={() => this.openModal()} title='Press Me, Yow' />
           <ActivityIndicator size='large' color='#0f0' />
           <ScrollView horizontal style={styles.sidescroll}>
             <Image
@@ -109,6 +115,13 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  textBox: {
+    borderWidth: 1,
+    borderColor: 'gray',
+    borderRadius: 5,
+    // height: 40,
+    marginTop: 5
   },
   modalContainer: {
     flex: 1,
