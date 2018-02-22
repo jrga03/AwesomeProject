@@ -12,77 +12,97 @@ import {
   Modal,
   TextInput
 } from 'react-native';
+import { 
+  StackNavigator, 
+  DrawerNavigator 
+} from 'react-navigation';
 
-export default class App extends Component {
+class HomeScreen extends Component {
+  static navigationOptions = ({ navigation }) => {
+    const params = navigation.state.params || {};
+
+    return {
+      title: 'Home',
+      // headerLeft: {},
+      // headerRight: {},
+    };
+  };
 
   state = {
     modalVisible: false,
+    imgUrl: 'http://www.reactnativeexpress.com/logo.png',
   };
-
-  openModal() {
-    this.setState({modalVisible: true});
-  }
-
-  closeModal() {
-    this.setState({modalVisible: false});
-  }
 
   render() {
     return (
       <ScrollView style={styles.scroll}>
         <View style={styles.container}>
-        <TextInput 
-          style={styles.textBox}
-          underlineColorAndroid='transparent'
-          placeholder='This is a text box.'
-          // onChangeText={}
-          // value={}
-        />
-          <Modal
-              visible={this.state.modalVisible}
-              animationType={'slide'}
-              onRequestClose={() => this.closeModal()}
-          >
-            <View style={styles.modalContainer}>
-              <View style={styles.innerContainer}>
-                <Text style={{color: 'white', fontSize: 48, textAlign: 'center',}}>Yo, yo, you pressed me!</Text>
-                <Button
-                    onPress={() => this.closeModal()}
-                    title="Don't Press Me"
-                />
-              </View>
-            </View>
-          </Modal>
+
+          <TextInput 
+            style={styles.textBox}
+            underlineColorAndroid='transparent'
+            placeholder='This is a text box.'
+            // onChangeText={}
+            // value={}
+          />
+
+          <Button 
+            title='Stack'
+            onPress={() => {
+              this.props.navigation.navigate(
+                'Details',
+                {
+                  otherParam: 'First',
+                },
+                // null,
+                // 'Details'
+              );
+            }}
+          />
+
+          <Button 
+            title='Drawer'
+            onPress={() => {
+              this.props.navigation.navigate('Notification');
+            }}
+          />
+
           <View style={styles.boxPic}>
             <Image
               style={styles.image}
-              source={{uri: 'http://www.reactnativeexpress.com/logo.png'}}
+              source={{uri: this.state.imgUrl}}
             />
           </View>
-          <Button onPress={() => this.openModal()} title='Press Me, Yow' />
+
+          <Button onPress={() => this.props.navigation.navigate('Modal')} title='Press Me, Yow' />
+
           <ActivityIndicator size='large' color='#0f0' />
+
           <ScrollView horizontal style={styles.sidescroll}>
             <Image
               style={styles.image}
-              source={{uri: 'http://www.reactnativeexpress.com/logo.png'}}
+              source={{uri: this.state.imgUrl}}
             />
             <Image
               style={styles.image}
-              source={{uri: 'http://www.reactnativeexpress.com/logo.png'}}
+              source={{uri: this.state.imgUrl}}
             />
             <Image
               style={styles.image}
-              source={{uri: 'http://www.reactnativeexpress.com/logo.png'}}
+              source={{uri: this.state.imgUrl}}
             />
             <Image
               style={styles.image}
-              source={{uri: 'http://www.reactnativeexpress.com/logo.png'}}
+              source={{uri: this.state.imgUrl}}
             />
           </ScrollView>
+
           <View style={styles.box} />
+
           <View>
             <Text style={styles.text}>Heyyyyyyyy</Text>
           </View>
+
           <View style={styles.flat}>
             <FlatList
               data={[
@@ -107,6 +127,126 @@ export default class App extends Component {
     )
   }
 }
+
+class DetailsScreen extends Component {
+  static navigationOptions = ({ navigation }) => {
+    const { params } = navigation.state;
+
+    return {
+      title: params ? params.otherParam : 'This is nested',
+    };
+  };
+
+  render() {
+    const { params } = this.props.navigation.state;
+    const otherParam = params ? params.otherParam : null;
+
+    return (
+      <View style={styles.container}>
+        <Text>Details Screen</Text>
+        <Button 
+          title='More stack'
+          onPress={() => { this.props.navigation.navigate('Details', {
+            otherParam: 'Next',
+          });
+        }}
+          />
+        <Button 
+          title='Back'
+          onPress={() => this.props.navigation.goBack()}
+        />
+        {/* <Button 
+          title='Home'
+          onPress={() => this.props.navigation.goBack('Details')}
+        /> */}
+      </View>
+    );
+  }
+}
+
+class NotificationScreen extends Component {
+  static navigationOptions = {
+    drawerLabel: 'Notifications',
+  }
+
+  render() {
+    return (
+      <View style={{flex:1, justifyContent:'center', alignItems:'stretch'}}>
+        <Button 
+          title='Main'
+          onPress={() => this.props.navigation.navigate('Main')}
+        />
+        <Button 
+          title='Draw more'
+          onPress={() => this.props.navigation.navigate('Notification')}
+        />
+      </View>
+    );
+  }
+}
+
+class ModalScreen extends Component {
+  render() {
+    return (
+      <View style={styles.modalContainer}>
+        <View style={styles.innerContainer}>
+          <Text style={{color: 'white', fontSize: 48, textAlign: 'center',}}>Yo, yo, you pressed me!</Text>
+          <Button
+            onPress={() => this.props.navigation.goBack()}
+            title="Don't Press Me"
+          />
+        </View>
+      </View>
+    );
+  }
+}
+
+const SubStack = DrawerNavigator({
+  Notifications: {
+    screen: NotificationScreen,
+  },
+});
+
+const MainStack = StackNavigator(
+  {
+    Home: {
+      screen: HomeScreen,
+    },
+    Details: {
+      screen: DetailsScreen,
+    },
+  },
+  {
+    initialRouteName: 'Home',
+    navigationOptions: {
+      headerStyle: {
+        backgroundColor: '#f4511e',
+      },
+      headerTintColor: '#fff',
+      headerTitleStyle: {
+        fontWeight: 'bold',
+      },
+    },
+  }
+);
+
+const RootStack = StackNavigator(
+  {
+    Main: {
+      screen: MainStack,
+    },
+    Modal: {
+      screen: ModalScreen,
+    },
+    Notification: {
+      screen: SubStack,
+    },
+  },
+  {
+    mode: 'modal',
+    headerMode: 'none',
+  }
+);
 
 const styles = StyleSheet.create({
   scroll: {
@@ -173,5 +313,11 @@ const styles = StyleSheet.create({
     fontSize: 24,
   },
 })
+
+export default class App extends Component {
+  render() {
+    return <RootStack />;
+  }
+}
 
 // AppRegistry.registerComponent('App', () => App)
