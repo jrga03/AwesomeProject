@@ -16,6 +16,7 @@ import {
   StackNavigator, 
   DrawerNavigator 
 } from 'react-navigation';
+import ToDoList from './todo';
 
 class HomeScreen extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -62,9 +63,12 @@ class HomeScreen extends Component {
 
           <Button 
             title='Drawer'
-            onPress={() => {
-              this.props.navigation.navigate('Notification');
-            }}
+            onPress={ () => this.props.navigation.navigate('Notification') }
+          />
+
+          <Button 
+            title='To Do'
+            onPress={ () => this.props.navigation.navigate('ToDo') }
           />
 
           <View style={styles.boxPic}>
@@ -134,6 +138,7 @@ class DetailsScreen extends Component {
 
     return {
       title: params ? params.otherParam : 'This is nested',
+      key: 'Details',
     };
   };
 
@@ -147,7 +152,7 @@ class DetailsScreen extends Component {
         <Button 
           title='More stack'
           onPress={() => { this.props.navigation.navigate('Details', {
-            otherParam: 'Next',
+            otherParam: 'Next', key: null,
           });
         }}
           />
@@ -155,10 +160,10 @@ class DetailsScreen extends Component {
           title='Back'
           onPress={() => this.props.navigation.goBack()}
         />
-        {/* <Button 
+        <Button 
           title='Home'
           onPress={() => this.props.navigation.goBack('Details')}
-        /> */}
+        />
       </View>
     );
   }
@@ -240,6 +245,9 @@ const RootStack = StackNavigator(
     },
     Notification: {
       screen: SubStack,
+    },
+    ToDo: {
+      screen: ToDoList,
     },
   },
   {
