@@ -8,7 +8,7 @@ import {
     StyleSheet,
     FlatList
 } from 'react-native';
-import { actionCreators } from '../reducers/ToDoRedux';
+import { actionCreators } from '../reducers/ToDoReducer';
 // import { NavigationActions } from 'react-navigation';
 
 export default class ToDoList extends Component {

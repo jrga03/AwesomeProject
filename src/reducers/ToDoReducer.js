@@ -17,7 +17,7 @@ const initialState = {
     todos: ['Click to remove', 'Ah yeah, learning React Native', 'Ship App'],
 }
 
-export const reducer = (state = initialState, action) => {
+const ToDoReducer = (state = initialState, action) => {
     const {todos} = state
     const {type, payload} = action
 
@@ -38,3 +38,5 @@ export const reducer = (state = initialState, action) => {
 
     return state
 }
+
+export default ToDoReducer;
