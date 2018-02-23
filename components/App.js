@@ -1,16 +1,5 @@
 import React, { Component } from 'react';
-import {
-  View,
-  ScrollView,
-  Text,
-  Image,
-  ActivityIndicator,
-  Button,
-  StyleSheet,
-  FlatList,
-  Modal,
-  TextInput
-} from 'react-native';
+import { View } from 'react-native';
 import { 
   StackNavigator, 
   DrawerNavigator,

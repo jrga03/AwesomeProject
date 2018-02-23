@@ -36,8 +36,8 @@ export default class DetailsScreen extends Component {
           onPress={() => this.props.navigation.goBack()}
         />
         <Button 
-          title='Home'
-          onPress={() => this.props.navigation.goBack('Details')}
+          title='Pop To Top'
+          onPress={() => this.props.navigation.popToTop()}
         />
       </View>
     );
