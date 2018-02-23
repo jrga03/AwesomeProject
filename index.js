@@ -1,7 +1,8 @@
+import React from 'react';
 import { AppRegistry, View } from 'react-native';
 import App from './components/App';
 import { createStore } from 'redux';
-import { reducer } from './components/ToDoRedux';
+import { reducer } from './src/components/ToDoRedux';
 
 const store = createStore(reducer);
 
