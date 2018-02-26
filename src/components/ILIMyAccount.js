@@ -7,35 +7,28 @@ import {
     TouchableOpacity,
     Image,
 } from 'react-native';
-import { StackNavigator } from 'react-navigation';
+import { NavigationActions } from 'react-navigation';
 
 // import BellIcon from '../assets/BellIcon';
 
-class Back extends Component {
-    render() {
-        return (
-            <TouchableOpacity>
-                <Image
-                    source={require('../assets/ic_arrow_back_white_24dp/android/drawable-hdpi/ic_arrow_back_white_24dp.png')} />
-            </TouchableOpacity>
-        );
-    }
-    
+export const Menu = () => {
+    return (
+        <TouchableOpacity
+            onPress={ () => {navigation.navigate('DrawerOpen')} } >
+            <Image
+                source={require('../assets/ic_menu_white_24dp/android/drawable-hdpi/ic_menu_white_24dp.png')} />
+        </TouchableOpacity>
+    );    
 }
 
-class Notification extends Component {
-
-    render() {
-        return (
-            <TouchableOpacity>
-                <Image
-                    source={require('../assets/ic_notifications_white_24dp/android/drawable-hdpi/ic_notifications_white_24dp.png')}
-                    // source={require('../assets/ic_notifications_white_24px.svg')}
-                    // style={{ height: 30, width: 30 }} 
-                    />
-            </TouchableOpacity>
-        );
-    }
+const Notification = () => {
+    return (
+        <TouchableOpacity>
+            <Image
+                source={require('../assets/ic_notifications_white_24dp/android/drawable-hdpi/ic_notifications_white_24dp.png')} 
+                onPress={{}} />
+        </TouchableOpacity>
+    );
 }
 
 const sections = [
@@ -62,18 +55,19 @@ const sections = [
 
 const extractKey = ({id}) => id;
 
-const notifIcon = '../assets/ic_notifications_white_24dp/android/drawable-hdpi/ic_notifications_white_24dp.png';
-
 export default class MyAccountScreen extends Component {
     static navigationOptions = {
         title: 'My Account',
+        headerTitle: 'MY ACCOUNT',
         headerRight: <Notification />,
-        headerLeft: <Back />
+        headerLeft: <Image
+                        onPress={ () => navigation.navigate('DrawerOpen') }
+                        source={require('../assets/ic_menu_white_24dp/android/drawable-hdpi/ic_menu_white_24dp.png')} />,
     }
-
+    
     renderItem = ({item}) => {
         return (
-            <Text style={{}}>
+            <Text style={styles.items}>
                 {item.text}
             </Text>
         );
@@ -81,7 +75,7 @@ export default class MyAccountScreen extends Component {
 
     renderSectionHeader = ({section}) => {
         return (
-            <Text style={{}}>
+            <Text style={styles.sections}>
                 {section.title}
             </Text>
         )
@@ -98,3 +92,12 @@ export default class MyAccountScreen extends Component {
         );
     }
 }
+
+const styles = StyleSheet.create({
+    items: {
+        color: 'gray',
+    },
+    sections: {
+        backgroundColor: 'lightgray',
+    },
+})

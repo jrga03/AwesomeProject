@@ -7,12 +7,13 @@ import {
 } from 'react-navigation';
 import { createStore, combineReducers } from 'redux';
 import { connect } from 'react-redux';
+
 import ToDoList from '../components/todo';
 import HomeScreen from '../components/Home';
 import DetailsScreen from '../components/Details';
 import NotificationScreen from '../components/Notifications';
 import ModalScreen from '../components/Modal';
-import MyAccountScreen from '../components/ILIMyAccount';
+import MyAccountScreen, { Menu } from '../components/ILIMyAccount';
 
 const MyAccountStack = StackNavigator(
     {
@@ -22,10 +23,12 @@ const MyAccountStack = StackNavigator(
     {
         navigationOptions: {
             headerStyle: {
-                backgroundColor: 'red',
+                backgroundColor: '#940605',
             },
             headerTitleStyle: {
                 alignSelf: 'center',
+                color: 'white',
+                fontSize: 24,
             },
         }
     }
@@ -65,9 +68,15 @@ export const AppDrawer = DrawerNavigator(
         MyAccount: {
             screen: MyAccountStack,
         },
+        Back: {
+            screen: MainStack,
+        }
     },
     {
         initialRouteName: 'MyAccount',
+        // navigationOptions: ({ navigation }) => ({
+            // headerLeft: <Menu navigate={navigation.navigate} />,
+        // }),
     }
 );
 
