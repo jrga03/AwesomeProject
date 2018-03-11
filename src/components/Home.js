@@ -45,16 +45,8 @@ export default class HomeScreen extends Component {
                     <Button
                         title='Stack'
                         onPress={() => {
-                            this.props.navigation.navigate(
-                                'Details',
-                                {
-                                    otherParam: 'First',
-                                },
-                                // null,
-                                // 'Details'
-                            );
-                        }}
-                    />
+                            this.props.navigation.navigate('Details', { otherParam: 'First' });
+                        }} />
 
                     <Button
                         title='Drawer'
@@ -79,7 +71,7 @@ export default class HomeScreen extends Component {
 
                     <Button onPress={() => this.props.navigation.navigate('Modal')} title='Press Me, Yow' />
 
-                    <ActivityIndicator size='large' color='#0f0' />
+                    <ActivityIndicator size='large' color='#aaa' />
 
                     <ScrollView horizontal style={styles.sidescroll}>
                         <Image
@@ -145,27 +137,27 @@ const styles = StyleSheet.create({
         padding: 15,
     },
     box: {
-        width: 300,
-        height: 300,
+        width: 100,
+        height: 100,
         backgroundColor: 'skyblue',
         borderWidth: 2,
         borderColor: 'steelblue',
         borderRadius: 20,
     },
     text: {
-        fontSize: 64,
+        fontSize: 28,
         color: '#4a90e2',
         padding: 50,
         backgroundColor: 'whitesmoke',
     },
     image: {
-        width: 300,
-        height: 300,
+        width: 100,
+        height: 100,
         // margin: 10,
     },
     boxPic: {
-        width: 400,
-        height: 400,
+        width: 100,
+        height: 100,
         borderWidth: 3,
         borderColor: 'steelblue',
         flex: 1,

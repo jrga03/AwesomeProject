@@ -12,10 +12,10 @@ export default class ModalScreen extends Component {
         return (
             <View style={styles.modalContainer}>
                 <View style={styles.innerContainer}>
-                    <Text style={{ color: 'white', fontSize: 48, textAlign: 'center', }}>Yo, yo, you pressed me!</Text>
+                    <Text style={{ color: 'white', fontSize: 48, textAlign: 'center', }}>MODAL</Text>
                     <Button
                         onPress={() => this.props.navigation.goBack()}
-                        title="Don't Press Me"
+                        title="BACK"
                     />
                 </View>
             </View>
