@@ -9,7 +9,8 @@ import {
     StyleSheet,
     FlatList,
     Modal,
-    TextInput
+    TextInput,
+    TouchableOpacity
 } from 'react-native';
 // import { NavigationActions } from 'react-navigation';
 
@@ -61,6 +62,13 @@ export default class HomeScreen extends Component {
                     <Button 
                         title='ILI My Account'
                         onPress={() => this.props.navigation.navigate('ILIMyAccount')} />
+
+                    <TouchableOpacity 
+                        style={styles.button}
+                        onPress={() => this.props.navigation.navigate('Pomodoro')}>
+
+                        <Text style={styles.buttonText}>Pomodoro Clock</Text>
+                    </TouchableOpacity>
 
                     <View style={styles.boxPic}>
                         <Image
@@ -135,6 +143,18 @@ const styles = StyleSheet.create({
         // borderColor: 'gray',
         // borderRadius: 5,
         padding: 15,
+    },
+    button: {
+        height: 40,
+        marginTop: 5,
+        marginBottom: 5,
+        backgroundColor: '#b0e0e6',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    buttonText: {
+        color: '#fff',
+        fontSize: 20,
     },
     box: {
         width: 100,

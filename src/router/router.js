@@ -14,6 +14,7 @@ import DetailsScreen from '../components/Details';
 import NotificationScreen from '../components/Notifications';
 import ModalScreen from '../components/Modal';
 import MyAccountScreen, { Menu } from '../components/ILIMyAccount';
+import PomodoroScreen from '../screens/pomodoro/Pomodoro';
 
 const MyAccountStack = StackNavigator(
     {
@@ -97,6 +98,7 @@ export const RootStack = StackNavigator(
         ILIMyAccount: {
             screen: AppDrawer,
         },
+        Pomodoro: PomodoroScreen
     },
     {
         mode: 'modal',
