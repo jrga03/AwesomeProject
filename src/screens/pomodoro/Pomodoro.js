@@ -10,7 +10,14 @@ import {
 } from 'react-native';
 
 import { Length } from './Length';
-import { POMODORO_MARGIN } from '../../constants';
+import { 
+    POMODORO_MARGIN,
+    COLORS
+} from '../../constants';
+
+const TIMER_SIZE = Dimensions.get('window').width - (POMODORO_MARGIN * 2);
+const TIMER_BORDER = 3;
+const TIMER_BG = Dimensions.get('window').width - (POMODORO_MARGIN * 2) - (TIMER_BORDER * 2); 
 
 export default class PomodoroClock extends Component {
     state = {
@@ -42,33 +49,10 @@ export default class PomodoroClock extends Component {
                         plus={() => false} />
                 </View>
 
-                {/* <Text style={[styles.row]}>
-                    <Text>Session Length</Text>
-                    <Text>Break Length</Text>
-                </Text>
-
-                <View style={[styles.row]}>
-                    <TouchableOpacity>
-                        <Text>-</Text>
-                    </TouchableOpacity>
-                    <Text>25</Text>
-                    <TouchableOpacity>
-                        <Text>+</Text>
-                    </TouchableOpacity>
-
-                    <TouchableOpacity>
-                        <Text>-</Text>
-                    </TouchableOpacity>
-                    <Text>5</Text>                    
-                    <TouchableOpacity>
-                        <Text>+</Text>
-                    </TouchableOpacity>
-                </View> */}
-
                 <TouchableOpacity 
                     style={styles.reset}
                     onPress={() => false} >
-                    <Text style={{ color: 'white', fontWeight: 'bold' }}>Reset</Text>
+                    <Text style={styles.resetText}>Reset</Text>
                 </TouchableOpacity>
             </View>
         );
@@ -84,35 +68,46 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     timer: {
-        height: Dimensions.get('window').width - (POMODORO_MARGIN * 2),
-        width: Dimensions.get('window').width - (POMODORO_MARGIN * 2),
-        borderWidth: 3,
-        borderRadius: Dimensions.get('window').width,
+        height: TIMER_SIZE,
+        width: TIMER_SIZE,
+        borderWidth: TIMER_BORDER,
+        borderRadius: TIMER_SIZE/2,
         justifyContent: 'center',
         alignItems: 'center',
+        marginBottom: 30,
     },
     timerBackground: {
         backgroundColor: 'olive',
-        height: Dimensions.get('window').width - (POMODORO_MARGIN * 2) - 6,
-        width: Dimensions.get('window').width - (POMODORO_MARGIN * 2) - 6,
-        borderRadius: Dimensions.get('window').width,
+        height: TIMER_BG,
+        width: TIMER_BG,
+        borderRadius: TIMER_BG/2,
         position: 'absolute',
         flex: 1,
         zIndex: -1,
     },
     timerText: {
         fontSize: PixelRatio.get()*40,
+        color: COLORS.TEXT
     },
     timerTime: {
         fontSize: PixelRatio.get()*40,
+        color: COLORS.TEXT
     },
     row: {
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
+        marginBottom: 20,
     },
     reset: {
         backgroundColor: '#555',
         padding: 5,
+        paddingRight: 10,
+        paddingLeft: 10,
+    },
+    resetText: {
+        color: 'white',
+        fontWeight: 'bold',
+        fontSize: PixelRatio.get()*8
     },
 });
