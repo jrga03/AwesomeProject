@@ -67,7 +67,7 @@ export default class HomeScreen extends Component {
                         style={styles.button}
                         onPress={() => this.props.navigation.navigate('Pomodoro')}>
 
-                        <Text style={styles.buttonText}>Pomodoro Clock</Text>
+                        <Text style={styles.buttonText}>POMODORO CLOCK</Text>
                     </TouchableOpacity>
 
                     <View style={styles.boxPic}>
@@ -148,7 +148,7 @@ const styles = StyleSheet.create({
         height: 40,
         marginTop: 5,
         marginBottom: 5,
-        backgroundColor: '#b0e0e6',
+        backgroundColor: '#3b5998',
         justifyContent: 'center',
         alignItems: 'center',
     },
