@@ -26,7 +26,7 @@ const Length = (props) => {
 
                 <TouchableOpacity
                     style={styles.button}
-                    onPress={() => minus} >
+                    onPress={() => minus()} >
                     <Icon 
                         name='remove'
                         type='material-icons'
@@ -38,7 +38,7 @@ const Length = (props) => {
                 
                 <TouchableOpacity 
                     style={styles.button}                    
-                    onPress={() => plus} >
+                    onPress={() => plus()} >
                     <Icon 
                         name='add'
                         type='material-icons'

@@ -103,7 +103,7 @@ export const RootStack = StackNavigator(
     {
         mode: 'modal',
         headerMode: 'none',
-        initialRouteName: 'Pomodoro',
+        // initialRouteName: 'Pomodoro',
     }
 );
 
