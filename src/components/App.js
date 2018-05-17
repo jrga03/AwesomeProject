@@ -3,6 +3,8 @@ import { View } from "react-native";
 import { RootStack } from "../router/router";
 import OneSignal from "react-native-onesignal";
 
+OneSignal.configure({})
+
 export default class App extends Component {
     componentWillMount() {
         OneSignal.init("6ea03bc1-833c-47b4-adda-1700694659b1");
